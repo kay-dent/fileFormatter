@@ -36,8 +36,7 @@ const formatHeader = (header) => {
     header[0] = header[0].padEnd(columnWidths[0]);
     header[1] = header[1].padStart(columnWidths[1]);
     header[2] = header[2].padEnd(columnWidths[2]);
-    header =  header.join(' | ');
-    return `| ${header} |`
+    return assembleLine(header);
 }
 
 const addHeaderBase = (data) => {
@@ -59,7 +58,11 @@ const formatLine = (line) => {
         }
         columns[i] = columns[i].padStart(columnWidths[i])
     }
-    line = columns.join(' | ');
+    return assembleLine(columns);
+}
+
+const assembleLine = (columns) => {
+    const line = columns.join(' | ');
     return `| ${line} |`
 }
 
