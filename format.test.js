@@ -8,6 +8,6 @@ test('correctly formats data', () => {
         "|=====================================================================|", 
         "| 29 Jul 1954 |             Lord of the Rings | John Ronald Reuel ... |",
         "| 01 Aug 1996 |             A Game of Thrones | George Raymond Martin |",
-        "| 05 Jul 2022 | Tomorrow and Tomorrow and ... |       Gabrielle Zevin |)"
+        "| 05 Jul 2022 | Tomorrow and Tomorrow and ... |       Gabrielle Zevin |"
     ])
 })

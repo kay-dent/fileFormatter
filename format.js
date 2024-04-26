@@ -1,5 +1,19 @@
 //const data = "Publication Date,Title,AuthorsAAA29/07/1954,Lord of the Rings,John Ronald Reuel TolkienAAA01/08/1996,A Game of Thrones,George Raymond MartinAAA05/07/2022,Tomorrow and Tomorrow and Tomorrow,Gabrielle Zevin";
 const columnWidths = [11, 29, 21];
+const monthKey = {
+    "01": "Jan",
+    "02": "Feb",
+    "03": "Mar",
+    "04": "Apr",
+    "05": "May",
+    "06": "Jun",
+    "07": "Jul",
+    "08": "Aug",
+    "09": "Sep",
+    "10": "Oct",
+    "11": "Nov",
+    "12": "Dec"
+}
 
 const format = (data) => {
     let lines = data.split("\n");
@@ -32,6 +46,7 @@ const addHeaderBase = (data) => {
 const formatLine = (line) => {
     console.log(line)
     let columns = line.split('|');
+    columns[0] = formatDate(columns[0]);
     for (let i = 0; i < columns.length; i++) {
         columns[i] = columns[i].trim();
         if (columns[i].length > columnWidths[i]) {
@@ -42,6 +57,12 @@ const formatLine = (line) => {
     }
     line = columns.join(' | ');
     return `| ${line} |`
+}
+
+const formatDate = (date) => {
+    date = date.split('/')
+    date[1] = monthKey[date[1]];
+    return date.join(' ')
 }
 
 //console.log(format(data));
