@@ -1,4 +1,3 @@
-//const data = "Publication Date,Title,AuthorsAAA29/07/1954,Lord of the Rings,John Ronald Reuel TolkienAAA01/08/1996,A Game of Thrones,George Raymond MartinAAA05/07/2022,Tomorrow and Tomorrow and Tomorrow,Gabrielle Zevin";
 const columnWidths = [11, 29, 21];
 const monthKey = {
     "01": "Jan",
@@ -72,12 +71,4 @@ const formatDate = (date) => {
     return date.join(' ')
 }
 
-//console.log(format(data));
-
 module.exports = format;
-
-/* 
-Column 1: 13
-Column 2: 31
-Column 3: 23
-*/
