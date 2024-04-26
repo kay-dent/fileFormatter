@@ -18,7 +18,7 @@ const monthKey = {
 const format = (data) => {
     let lines = data.split("\n");
     lines[0] = formatHeader(lines[0].split(','));
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = 1; i < lines.length; i++) {
         lines[i] = addColumnsBetween(lines[i])
         lines[i] = formatLine(lines[i]);
     }
@@ -33,7 +33,11 @@ const addColumnsBetween = (line) => {
 
 const formatHeader = (header) => {
     header[0] = "Pub Date"
-    return header.join(',');
+    header[0] = header[0].padEnd(columnWidths[0]);
+    header[1] = header[1].padStart(columnWidths[1]);
+    header[2] = header[2].padEnd(columnWidths[2]);
+    header =  header.join(' | ');
+    return `| ${header} |`
 }
 
 const addHeaderBase = (data) => {
