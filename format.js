@@ -4,10 +4,10 @@ const columnWidths = [12, 31, 23];
 const format = (data) => {
     let lines = data.split('\n');
     lines[0] = formatHeader(lines[0].split(','));
-
     for (let i = 0; i < lines.length; i++) {
         lines[i] = addColumns(lines[i])
     }
+    lines = addHeaderBase(lines);
     return lines;
 }
 
@@ -26,6 +26,14 @@ const formatHeader = (header) => {
     header[0] = "Pub Date"
     console.log(`header is now ${header}`);
     return header.join(',');
+}
+
+const addHeaderBase = (data) => {
+    const header = data[0]
+    data.shift();
+    data.unshift("|=====================================================================|");
+    data.unshift(header);
+    return data;
 }
 
 console.log(format(data));
