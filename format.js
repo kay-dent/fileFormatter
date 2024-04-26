@@ -7,7 +7,7 @@ const format = (data) => {
     for (let i = 0; i < lines.length; i++) {
         lines[i] = addColumnsBetween(lines[i])
         lines[i] = addWhiteSpace(lines[i])
-        
+        lines[i] = abbreviateText(lines[i])
     }
     lines = addHeaderBase(lines);
     return lines;
@@ -37,6 +37,17 @@ const addWhiteSpace = (line) => {
         columns[i] =columns[i].padStart(columnWidths[i])
     }
     return columns.join('|');
+}
+
+const abbreviateText = (line) => {
+    let columns = line.split('|');
+    for (let i = 0; i < columns.length; i++) {
+        if (columns[i].length > columnWidths[i]) {
+            columns[i] = columns[i].substring(0, columnWidths[i] - 4);
+            columns[i] += ("... ");
+        }
+    }
+    return columns.join('|')
 }
 
 console.log(format(data));
