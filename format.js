@@ -5,35 +5,38 @@ const format = (data) => {
     let lines = data.split('\n');
     lines[0] = formatHeader(lines[0].split(','));
     for (let i = 0; i < lines.length; i++) {
-        lines[i] = addColumns(lines[i])
+        lines[i] = addColumnsBetween(lines[i])
+        lines[i] = addWhiteSpace(lines[i])
+        
     }
     lines = addHeaderBase(lines);
     return lines;
 }
 
-const addColumns = (line) => {
+const addColumnsBetween = (line) => {
   let sections = line.split(',')
-  
-  for (let i = 0; i < sections.length; i++) {
-    sections[i] = " | " + sections[i];
-    if (i === 2) { sections[i] += ' |' }
-  }
-  return sections.join('');
+  return sections.join(' | ');
 
 }
 
 const formatHeader = (header) => {
     header[0] = "Pub Date"
-    console.log(`header is now ${header}`);
     return header.join(',');
 }
 
 const addHeaderBase = (data) => {
-    const header = data[0]
-    data.shift();
+    const header = data.shift();
     data.unshift("|=====================================================================|");
     data.unshift(header);
     return data;
+}
+
+const addWhiteSpace = (line) => {
+    let columns = line.split('|');
+    for (let i = 0; i < columns.length; i++) {
+        columns[i] =columns[i].padStart(columnWidths[i])
+    }
+    return columns.join('|');
 }
 
 console.log(format(data));
